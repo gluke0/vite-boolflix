@@ -41,7 +41,7 @@ export default{
             <ul v-for="found in store.searched">
                 <li><strong>titolo:</strong> {{ found.title }}</li>
                 <li><strong>titolo originale:</strong> {{ found.original_title }}</li>
-                <li><strong>lingua:</strong> {{ found.original_language }}</li>
+                <li><strong>lingua:</strong> <img class="small" :src="`../node_modules/language-icons/icons/${found.original_language}.svg`" alt=""></li>
                 <li><strong>stelle:</strong> {{ found.vote_average }}</li>
             </ul>
         </div>
@@ -53,5 +53,9 @@ export default{
 <style lang="scss">
 
 @use './style/main.scss';
+
+.small{
+    width: 12px
+}
 
 </style>
