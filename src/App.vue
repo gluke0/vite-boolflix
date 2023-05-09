@@ -29,15 +29,15 @@ export default{
 
 <template>
     
-    <div class="bg-primary">
-        <div class="container m-5">
+    <div id="vp" class="bg-primary overflow-auto">
+        <div class="container m-5 d-flex justify-content-center">
             <form @submit.prevent="search">
                 <input v-model="store.query" type="search" name="search-movie" id="search-movie">
                 <button> Search </button>
             </form>
         </div>
 
-        <div class="container m-5">
+        <div class="container m-5 d-flex justify-content-center flex-wrap">
             <ul v-for="found in store.searched">
                 <li><strong>titolo:</strong> {{ found.title }}</li>
                 <li><strong>titolo originale:</strong> {{ found.original_title }}</li>
@@ -54,8 +54,17 @@ export default{
 
 @use './style/main.scss';
 
-.small{
-    width: 12px
+#vp{
+    height: 100vh;
+    width: 100%;
+
+    ul{
+        width: calc(100% / 2);
+    }
+
+    .small{
+        width: 12px
+    }
 }
 
 </style>
