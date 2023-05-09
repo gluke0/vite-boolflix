@@ -11,9 +11,9 @@ export default{
     },
     
     created(){
-        axios.get(store.alldata.movie_api,{
+        axios.get(store.alldata.movieApi,{
             params: {
-                api_key: store.alldata.api_key,
+                apiKey: store.alldata.apiKey,
                 query: store.alldata.query
             }
         })
