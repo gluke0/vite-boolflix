@@ -51,6 +51,12 @@ export default{
 
         <div class="container m-5 d-flex justify-content-center flex-wrap">
             <ul v-for="found in store.searched">
+                <li>
+                    <div>
+                        <img :src="`${this.store.alldata.poster}${found.poster_path}`" alt="found.original_title"
+                        onerror="this.onerror=null;this.src='../src/assets/img/noposter.jpeg';">
+                    </div>
+                </li>
                 <li><strong>titolo:</strong> {{ found.title }}</li>
                 <li><strong>titolo originale:</strong> {{ found.original_title }}</li>
                 <li><strong>lingua:</strong> <img class="small" :src="`../node_modules/language-icons/icons/${found.original_language}.png`" :alt="found.original_language"></li>
@@ -60,6 +66,12 @@ export default{
 
         <div class="container m-5 d-flex justify-content-center flex-wrap">
             <ul v-for="foundTv in store.searchedSerie">
+                <li>
+                    <div>
+                        <img :src="`${this.store.alldata.poster}${foundTv.poster_path}`" alt="searchedSerie.original_name"
+                        onerror="this.onerror=null;this.src='../src/assets/img/noposter.jpeg';">
+                    </div>
+                </li>
                 <li><strong>titolo:</strong> {{ foundTv.name }}</li>
                 <li><strong>titolo originale:</strong> {{ foundTv.original_name }}</li>
                 <li><strong>lingua:</strong> <img class="small" :src="`../node_modules/language-icons/icons/${foundTv.original_language}.png`" :alt="foundTv.original_language"></li>
