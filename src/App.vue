@@ -81,7 +81,8 @@ export default{
                 <li><strong>titolo:</strong> {{ foundTv.name }}</li>
                 <li><strong>titolo originale:</strong> {{ foundTv.original_name }}</li>
                 <li><strong>lingua:</strong> <img class="small" :src="`../node_modules/language-icons/icons/${foundTv.original_language}.png`" :alt="foundTv.original_language"></li>
-                <li><strong>stelle:</strong> {{ rating(foundTv.vote_average) }}</li>
+                <li><strong>stelle:</strong> <i v-for="finalVote in rating(foundTv.vote_average)" class="fa-solid fa-star"></i>
+                <i v-for="empty in (this.store.alldata.maxStars - rating(foundTv.vote_average))" class="fa-regular fa-star"></i></li>
             </ul>
         </div>
 
