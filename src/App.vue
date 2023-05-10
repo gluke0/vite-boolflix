@@ -36,7 +36,7 @@ export default{
         rating(vote){
             const starsRating = this.store.alldata.maxRate / this.store.alldata.maxStars;
             const finalVote = Math.ceil(vote / starsRating);
-            return finalVote
+            return (finalVote);
         }
     },
 }
@@ -50,7 +50,7 @@ export default{
         <div class="container m-5 d-flex justify-content-center">
             <form @submit.prevent="search">
                 <input class="p-2" v-model="store.query" type="text" placeholder="Ricerca film o serie TV" name="search-movie" id="search-movie">
-                <button class="p-2"> Search </button>
+                <button class="p-2"> Cerca </button>
             </form>
         </div>
 
@@ -59,13 +59,14 @@ export default{
                 <li>
                     <div>
                         <img :src="`${this.store.alldata.poster}${found.poster_path}`" alt="found.original_title"
-                        onerror="this.onerror=null;this.src='../src/assets/img/noposter.jpeg';">
+                        onerror="this.onerror=null;this.src='../src/assets/img/noposter.jpeg'">
                     </div>
                 </li>
                 <li><strong>titolo:</strong> {{ found.title }}</li>
                 <li><strong>titolo originale:</strong> {{ found.original_title }}</li>
                 <li><strong>lingua:</strong> <img class="small" :src="`../node_modules/language-icons/icons/${found.original_language}.png`" :alt="found.original_language"></li>
-                <li><strong>stelle:</strong> {{ rating(found.vote_average) }}</li>
+                <li><strong>stelle:</strong> <i v-for="finalVote in rating(found.vote_average)" class="fa-solid fa-star"></i>
+                <i v-for="empty in (this.store.alldata.maxStars - rating(found.vote_average))" class="fa-regular fa-star"></i></li>
             </ul>
         </div>
 
@@ -74,7 +75,7 @@ export default{
                 <li>
                     <div>
                         <img :src="`${this.store.alldata.poster}${foundTv.poster_path}`" alt="searchedSerie.original_name"
-                        onerror="this.onerror=null;this.src='../src/assets/img/noposter.jpeg';">
+                        onerror="this.onerror=null;this.src='../src/assets/img/noposter.jpeg'">
                     </div>
                 </li>
                 <li><strong>titolo:</strong> {{ foundTv.name }}</li>
