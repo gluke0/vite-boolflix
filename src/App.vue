@@ -32,8 +32,8 @@ export default{
     <div id="vp" class="bg-primary overflow-auto">
         <div class="container m-5 d-flex justify-content-center">
             <form @submit.prevent="search">
-                <input v-model="store.query" type="search" name="search-movie" id="search-movie">
-                <button> Search </button>
+                <input class="p-2" v-model="store.query" type="text" placeholder="Ricerca film o serie TV" name="search-movie" id="search-movie">
+                <button class="p-2"> Search </button>
             </form>
         </div>
 
@@ -41,7 +41,7 @@ export default{
             <ul v-for="found in store.searched">
                 <li><strong>titolo:</strong> {{ found.title }}</li>
                 <li><strong>titolo originale:</strong> {{ found.original_title }}</li>
-                <li><strong>lingua:</strong> <img class="small" :src="`../node_modules/language-icons/icons/${found.original_language}.svg`" alt=""></li>
+                <li><strong>lingua:</strong> <img class="small" :src="`../node_modules/language-icons/icons/${found.original_language}.png`" alt=""></li>
                 <li><strong>stelle:</strong> {{ found.vote_average }}</li>
             </ul>
         </div>
