@@ -2,8 +2,12 @@
 
 import {store} from './store';
 import axios from 'axios';
+import headerApp from './components/header/headerApp.vue'
 
 export default{
+    components:{
+        headerApp,
+    },
     data(){
         return{
             store
@@ -45,11 +49,12 @@ export default{
 
 
 <template>
-    
+    <headerApp> </headerApp>
+
     <div id="vp" class="bg-primary overflow-auto">
         <div class="container m-5 d-flex justify-content-center">
             <form @submit.prevent="search">
-                <input class="p-2" v-model="store.query" type="text" placeholder="Ricerca film o serie TV" name="search-movie" id="search-movie">
+                <input class="p-2" v-model="store.query" type="text" placeholder="Cerca film o serie TV" name="search-movie" id="search-movie">
                 <button class="p-2"> Cerca </button>
             </form>
         </div>
@@ -58,15 +63,20 @@ export default{
             <ul v-for="found in store.searched">
                 <li>
                     <div>
-                        <img :src="`${this.store.alldata.poster}${found.poster_path}`" alt="found.original_title"
-                        onerror="this.onerror=null;this.src='../src/assets/img/noposter.jpeg'">
+                        <img :src="`${store.alldata.poster}${found.poster_path}`" :alt="found.original_title"
+                        onerror="onerror=null;src='../src/assets/img/noposter.jpeg'">
                     </div>
                 </li>
                 <li><strong>titolo:</strong> {{ found.title }}</li>
                 <li><strong>titolo originale:</strong> {{ found.original_title }}</li>
-                <li><strong>lingua:</strong> <img class="small" :src="`../node_modules/language-icons/icons/${found.original_language}.png`" :alt="found.original_language"></li>
-                <li><strong>stelle:</strong> <i v-for="finalVote in rating(found.vote_average)" class="fa-solid fa-star"></i>
-                <i v-for="empty in (this.store.alldata.maxStars - rating(found.vote_average))" class="fa-regular fa-star"></i></li>
+                <li>
+                    <strong>lingua:</strong> 
+                    <img class="small" :src="`../src/assets/img/language-icons/icons/${found.original_language}.png`" :alt="found.original_language"></li>
+                <li>
+                    <strong>stelle:</strong>
+                    <i v-for="finalVote in rating(found.vote_average)" class="fa-solid fa-star"></i>
+                    <i v-for="empty in (store.alldata.maxStars - rating(found.vote_average))" class="fa-regular fa-star"></i>
+                </li>
             </ul>
         </div>
 
@@ -74,15 +84,20 @@ export default{
             <ul v-for="foundTv in store.searchedSerie">
                 <li>
                     <div>
-                        <img :src="`${this.store.alldata.poster}${foundTv.poster_path}`" alt="searchedSerie.original_name"
-                        onerror="this.onerror=null;this.src='../src/assets/img/noposter.jpeg'">
+                        <img :src="`${store.alldata.poster}${foundTv.poster_path}`" :alt="foundTv.original_name"
+                        onerror="onerror=null;src='../src/assets/img/noposter.jpeg'">
                     </div>
                 </li>
-                <li><strong>titolo:</strong> {{ foundTv.name }}</li>
-                <li><strong>titolo originale:</strong> {{ foundTv.original_name }}</li>
-                <li><strong>lingua:</strong> <img class="small" :src="`../node_modules/language-icons/icons/${foundTv.original_language}.png`" :alt="foundTv.original_language"></li>
-                <li><strong>stelle:</strong> <i v-for="finalVote in rating(foundTv.vote_average)" class="fa-solid fa-star"></i>
-                <i v-for="empty in (this.store.alldata.maxStars - rating(foundTv.vote_average))" class="fa-regular fa-star"></i></li>
+                <li><strong>titolo: </strong> {{ foundTv.name }}</li>
+                <li><strong>titolo originale: </strong> {{ foundTv.original_name }}</li>
+                <li>
+                    <strong>lingua: </strong> 
+                    <img class="small" :src="`../src/assets/img/language-icons/icons/${foundTv.original_language}.png`" :alt="foundTv.original_language"></li>
+                <li>
+                    <strong>stelle: </strong> 
+                    <i v-for="finalVote in rating(foundTv.vote_average)" class="fa-solid fa-star"></i>
+                    <i v-for="empty in (store.alldata.maxStars - rating(foundTv.vote_average))" class="fa-regular fa-star"></i>
+                </li>
             </ul>
         </div>
 
