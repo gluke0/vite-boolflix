@@ -1,29 +1,52 @@
 <script>
 
 import cardApp from './cardApp.vue';
+import { store } from '../../store';
 
 export default{
+    name: 'containerApp',
     components:{
         cardApp,
     },
     data(){
         return{
-            name: 'containerApp'
+            store,
+        };
+    },
+    computed:{
+        getResults(){
+            const searchResults = [...store.searched, ...store.searchedSerie];
+            return searchResults;
         }
     }
-}
+};
+
 </script>
 
 <template>
-    <div class="container rounded p-4">
-        <h1>titolo</h1>
-        <cardApp></cardApp>
+    <div class="container rounded py-3">
+        <h1 class="ms-4">titolo</h1>
+        <div class="cards d-flex">
+            <cardApp class="mx-3" v-for="foundResult in getResults"
+            :poster="`${this.store.alldata.poster}${foundResult.poster_path}`"
+            :title="foundResult.title"
+            :original-title="foundResult.original_title"
+            :original-language="foundResult.original_language"
+            :vote="foundResult.vote_average"
+            :description="foundResult.overview"></cardApp>
+        </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
 @use '../../style/partials/variables';
-.container {
+
+.container{
     background-color: variables.$card-container;
+
+    .cards{
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
 }
 </style>

@@ -34,7 +34,7 @@ import searchApp from './searchApp.vue';
 
     }
 
-    img{
+    .logo img{
         width: 9rem;
     }
 

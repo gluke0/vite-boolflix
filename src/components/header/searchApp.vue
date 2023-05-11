@@ -4,9 +4,9 @@ import axios from 'axios';
 import {store} from '../../store';
 
     export default{
+        name: 'searchApp',
         data(){
             return{
-                name: 'searchApp',
                 store,
             }
         },
