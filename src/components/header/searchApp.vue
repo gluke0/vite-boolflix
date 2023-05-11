@@ -16,7 +16,7 @@ import {store} from '../../store';
                     params: {
                         api_key: this.store.alldata.apiKey,
                         language: this.store.alldata.itTranslate,
-                        queery: this.store.query,
+                        query: this.store.query,
                     }
                 })
             },

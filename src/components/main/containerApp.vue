@@ -28,12 +28,8 @@ export default{
         <h1 class="ms-4">titolo</h1>
         <div class="cards d-flex">
             <cardApp class="mx-3" v-for="foundResult in getResults"
-            :poster="`${this.store.alldata.poster}${foundResult.poster_path}`"
-            :title="foundResult.title"
-            :original-title="foundResult.original_title"
-            :original-language="foundResult.original_language"
-            :vote="foundResult.vote_average"
-            :description="foundResult.overview"></cardApp>
+            :poster="this.store.alldata.poster"
+            :result="foundResult"></cardApp>
         </div>
     </div>
 </template>

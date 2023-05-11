@@ -17,20 +17,16 @@ export default{
     },
     props:{
         poster: String,
-        title: String,
-        vote: Number, 
-        originalTitle: String, 
-        originalLanguage: String,
-        description: String,
+        result: Object,
     },
     computed:{
         getImagePath(){
-            return new URL(this.poster, import.meta.url).href;
+            return new URL(this.poster + this.result.poster_path, import.meta.url).href;
         },
         rating(vote){
             const starsRating = this.alldata.maxRate / this.alldata.maxStars;
-            const finalVote = Math.ceil(this.vote / starsRating);
-            return (finalVote);
+            const finalVote = Math.ceil(this.result.vote_average / starsRating);
+            return finalVote;
         },
     }
 }
@@ -39,18 +35,18 @@ export default{
 <template>
     <div class="result-card position-relative">
         <div class="poster">
-            <img :src="getImagePath" :alt="title"
+            <img :src="getImagePath" :alt="result.title"
             onerror="this.onerror=null;this.src='../src/assets/img/noposter.jpeg'">
         </div>
         <div class="info p-2 position-absolute">
             <starsApp :finalVote="rating" :maxStars="this.alldata.maxStars"></starsApp>
             <div class="other-info">
-                <div class="title"> {{ title }} </div>
-                <div class="original-title"> {{ originalTitle }} </div>
+                <div class="title"> {{ result.title || result.name }} </div>
+                <div class="original-title"> {{ result.original_title || result.original_name }} </div>
                 <div class="original-language">
-                    <img class="small" :src="`../src/assets/img/language-icons/icons/${this.original_language}.png`" :alt="this.original_language">
+                    <img class="small" :src="`../src/assets/img/language-icons/icons/${this.result.original_language}.png`" :alt="this.result.original_language">
                 </div>
-                <div class="description"> {{ description }} </div>
+                <div class="description"> {{ result.overview }} </div>
             </div>
         </div>
     </div>
