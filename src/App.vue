@@ -1,47 +1,23 @@
 <script>
 
-import {store} from './store';
-import axios from 'axios';
 import headerApp from './components/header/headerApp.vue'
+import mainApp from './components/main/mainApp.vue';
 
 export default{
     components:{
         headerApp,
+        mainApp,
     },
     data(){
         return{
-            store
         }       
     },
     methods: {
-        search(){
-            axios.get(this.store.alldata.movieApi,{
-                params: {
-                    api_key: this.store.alldata.apiKey,
-                    language: this.store.alldata.itTranslate,
-                    query: this.store.query,
-                }
-            })
-            .then ((res) => {
-                this.store.searched = res.data.results;
-            });
-
-            axios.get(this.store.alldata.serieApi,{
-                params:{
-                    api_key: this.store.alldata.apiKey,
-                    language: this.store.alldata.itTranslate,
-                    query: this.store.query,
-                }
-            })
-            .then ((res) => {
-                this.store.searchedSerie = res.data.results;
-            });
-        },
-        rating(vote){
-            const starsRating = this.store.alldata.maxRate / this.store.alldata.maxStars;
-            const finalVote = Math.ceil(vote / starsRating);
-            return (finalVote);
-        }
+        // rating(vote){
+        //     const starsRating = this.store.alldata.maxRate / this.store.alldata.maxStars;
+        //     const finalVote = Math.ceil(vote / starsRating);
+        //     return (finalVote);
+        // }
     },
 }
 
@@ -50,16 +26,9 @@ export default{
 
 <template>
     <headerApp> </headerApp>
+    <mainApp></mainApp>
 
-    <div id="vp" class="bg-primary overflow-auto">
-        <div class="container m-5 d-flex justify-content-center">
-            <form @submit.prevent="search">
-                <input class="p-2" v-model="store.query" type="text" placeholder="Cerca film o serie TV" name="search-movie" id="search-movie">
-                <button class="p-2"> Cerca </button>
-            </form>
-        </div>
-
-        <div class="container m-5 d-flex justify-content-center flex-wrap">
+        <!-- <div class="container m-5 d-flex justify-content-center flex-wrap">
             <ul v-for="found in store.searched">
                 <li>
                     <div>
@@ -99,10 +68,7 @@ export default{
                     <i v-for="empty in (store.alldata.maxStars - rating(foundTv.vote_average))" class="fa-regular fa-star"></i>
                 </li>
             </ul>
-        </div>
-
-
-    </div>
+        </div> -->
 
 </template>
 
