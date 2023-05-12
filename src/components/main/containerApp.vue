@@ -30,8 +30,8 @@ export default{
 
 <template>
     <div class="cdcontainer rounded m-auto py-3">
-        <h1 class="fw-semibold text-secondary text-center" v-if="getResults.length == 0"> Cerca film o serie TV </h1>
-        <h1 class="ms-4 fw-semibold text-secondary" v-else> Risultati trovati: </h1>
+        <h1 class="fw-semibold text-secondary text-center" v-if="getResults.length == 0"> Esplora il catalogo, film e serie TV ti aspettano </h1>
+        <h1 class="ms-4 fw-semibold text-secondary" v-else> Risultati trovati:</h1>
         <div class="cards d-flex" @wheel.preventDefault="hScroll($event)">
             <cardApp class="mx-3" v-for="foundResult in getResults"
             :poster="this.store.alldata.poster"
