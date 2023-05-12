@@ -15,7 +15,7 @@ export default{
 </script>
 
 <template>
-    <main class="d-flex flex-column justify-content-evenly py-3">
+    <main class="py-3">
 
         <containerApp> </containerApp>
 

@@ -3,12 +3,12 @@
 import searchApp from './searchApp.vue';
 
     export default {
-        components: {
+        name: 'headerApp',
+        components:{
             searchApp,
         },
         data() {
-            return {
-                name: 'headerApp',
+            return{
             }
         }
     }

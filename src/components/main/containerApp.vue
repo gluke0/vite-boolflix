@@ -17,16 +17,22 @@ export default{
         getResults(){
             const searchResults = [...store.searched, ...store.searchedSerie];
             return searchResults;
-        }
-    }
+        },
+    },
+    methods: {
+        hScroll(event){
+            event.currentTarget.scrollLeft += event.deltaY;
+        },
+    },
 };
 
 </script>
 
 <template>
-    <div class="container rounded py-3">
-        <h1 class="ms-4">titolo</h1>
-        <div class="cards d-flex">
+    <div class="cdcontainer rounded m-auto py-3">
+        <h1 class="fw-semibold text-secondary text-center" v-if="getResults.length == 0"> Cerca film o serie TV </h1>
+        <h1 class="ms-4 fw-semibold text-secondary" v-else> Risultati trovati: </h1>
+        <div class="cards d-flex" @wheel.preventDefault="hScroll($event)">
             <cardApp class="mx-3" v-for="foundResult in getResults"
             :poster="this.store.alldata.poster"
             :result="foundResult"></cardApp>
@@ -37,12 +43,12 @@ export default{
 <style lang="scss" scoped>
 @use '../../style/partials/variables';
 
-.container{
+.cdcontainer{
     background-color: variables.$card-container;
+    width: 90%;
 
     .cards{
-        overflow-x: auto;
-        overflow-y: hidden;
+        overflow: hidden;
     }
 }
 </style>
