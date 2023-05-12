@@ -31,6 +31,7 @@ export default{
 
 .fa-regular{
     color: variables.$emptystars;
+
 }
 
 </style>

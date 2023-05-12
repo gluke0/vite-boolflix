@@ -44,7 +44,7 @@ export default{
                 <h2 class="title fw-bold"> {{ result.title || result.name }} </h2>
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="original-title"> {{ result.original_title || result.original_name }} </div>
-                    <div class="language">
+                    <div class="language position-absolute ">
                         <img class="small" :src="`../src/assets/img/language-icons/icons/${result.original_language}.png`" :alt="result.original_language">
                     </div>
                 </div>
@@ -71,7 +71,7 @@ export default{
 .info{ 
         height: variables.$poster-h;
         opacity: 0;
-        width: variables.$poster;
+        width: 100%;
         transition: opacity 2s;
 
         &:hover{
@@ -83,15 +83,19 @@ export default{
         }
 
         .other-info{
-            background-color:  lightgray;
+            background-color: variables.$opac;
             height: 80%;
+
+        .original-title{
+            margin-left: 2.5rem;
+        }
         .language{
             width: 1.20rem;
         }
 
         .description {
             display: -webkit-box;
-            -webkit-line-clamp: 8;
+            -webkit-line-clamp: 10;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
